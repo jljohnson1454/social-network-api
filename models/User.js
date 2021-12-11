@@ -14,17 +14,18 @@ const UserSchema = new Schema(
             type: String,
             required: true,
             unique: true,
+            match: [/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/]
            // match: // forgot how this one works //
         },
-        thoughts: {
+        thoughts: [{
                 type: Schema.Types.ObjectId,
                 ref: 'Thoughts'
-        },
-        friends: {
+        }],
+        friends: [{
                 type: Schema.Types.ObjectId,
                 ref: 'User'
 
-        }
+        }]
         
     }
 )
