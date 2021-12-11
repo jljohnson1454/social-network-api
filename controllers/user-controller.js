@@ -24,7 +24,7 @@ const userController = {
         })
         .select('-__v')
         .then(dbUserData => {
-            if(!dbPizzaData) {
+            if(!dbUserData) {
                 res.status(404).json({ message: 'No user found with this id!'});
                 return;
             }
@@ -37,7 +37,7 @@ const userController = {
     },
 
     //create user
-    createUser({ body, res }) {
+    createUser({ body }, res) {
         User.create(body)
         .then(dbUserData => res.json(dbUserData))
         .catch(err => res.status(400).json(err))
@@ -73,7 +73,8 @@ const userController = {
     //////////////////////////////////
 
     addFriend({ params }, res) {
-        User.findOneAndUpdate({ _id: params.userId },
+        User.findOneAndUpdate(
+            { _id: params.userId },
             {$push: { friends: body}},
             {new: true}
             )

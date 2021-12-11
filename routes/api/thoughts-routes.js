@@ -6,22 +6,29 @@ const {
     getThoughtById,
     addThought,
     removeThought,
+    updateThought,
     addReaction,
     removeReaction
 } = require('../../controllers/thoughts-controller');
 
 router
-    .route('/:userId')
+    .route('/')
     .get(getAllThoughts)
     .post(addThought);
 
 router
-    .route('/:userId/:thought')
+    .route('/:thoughtId')
     .get(getThoughtById)
-    .put(addReaction)
+    .put(updateThought)
     .delete(removeThought)
+    
+router
+    .route('/:thoughtId')
+    .post(addReaction)
+    
+
 
 // Bonus: Remove a user's associated thoughts when deleted
-router.route('/:userId/:thoughtId/:reactionId').delete(removeReaction);
+router.route('/:thoughtId/:reactionId').delete(removeReaction);
 
 module.exports = router;

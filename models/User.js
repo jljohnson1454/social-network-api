@@ -1,9 +1,9 @@
-const { Schema, model, Types } = require('mongoose');
+const { Schema, model } = require('mongoose');
 const dateFormat = require('../utils/dateFormat');
 
 const UserSchema = new Schema(
     {
-        userName: {
+        username: {
             type: String,
             unique: true,
             required: true,
@@ -14,8 +14,8 @@ const UserSchema = new Schema(
             type: String,
             required: true,
             unique: true,
-            match: [/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/]
-           // match: // forgot how this one works //
+            //match: [/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/]
+           
         },
         thoughts: [{
                 type: Schema.Types.ObjectId,
@@ -27,8 +27,14 @@ const UserSchema = new Schema(
 
         }]
         
-    }
-)
+    },
+    {    
+        toJSON: {
+            virtuals: true,
+            getters: true
+        },
+        id: false
+    })
 
 // Create a virtual called friendCount that retrieves the length of the user's friends array field on query.
 
@@ -37,6 +43,6 @@ UserSchema.virtual('friendCount').get(function() {
 })
 
 // Create User model
-const User = model('Pizza', PizzaSchema);
+const User = model('User', UserSchema);
 
 module.exports = User;
