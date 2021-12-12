@@ -1,7 +1,7 @@
 # Social Network API
 
 ## Description
-Using MongooseDB, I was able to create the backend for a social network api. With this API, anyone can create a user, check for existing users, update user information, or delete them. Once a user has been registered they can befriend other users and share their thoughts and reactions with each other in an relatively easy manner.
+Using Mongoose, I was able to create the backend for a social network api. With this API, anyone can create a user, check for existing users, update user information, or delete them. Once a user has been registered they can befriend other users and share their thoughts and reactions with each other in an relatively easy manner.
 
 ## Installation
 
